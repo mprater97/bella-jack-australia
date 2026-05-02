@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bella & Jack’s Australia Adventure</title>
+
+<style>
+body {margin:0;font-family:Arial;background:#eef3f8;}
+.hero {background:#0077ff;color:white;padding:50px;text-align:center;}
+.section {padding:30px;max-width:1100px;margin:auto;}
+h2 {color:#0077ff;}
+.grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+img {width:100%;border-radius:12px;}
+.card {background:white;padding:20px;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+.button {background:#0077ff;color:white;padding:12px 20px;border:none;border-radius:8px;cursor:pointer;margin-top:10px;}
+.hidden {display:none;}
+.split {display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.nav {text-align:center;margin-top:20px;}
+.nav button {margin:5px;}
+</style>
+
+<script>
+function toggle(id){
+  document.getElementById(id).classList.toggle("hidden");
+}
+
+function showPage(page){
+  document.querySelectorAll(".page").forEach(p => p.style.display="none");
+  document.getElementById(page).style.display="block";
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="hero">
+<h1>🌏 Bella & Jack’s Australia Adventure</h1>
+<p>Melbourne lifestyle + beach life 🌊</p>
+
+<div class="nav">
+<button onclick="showPage('overview')">Overview</button>
+<button onclick="showPage('bella')">Bella</button>
+<button onclick="showPage('jack')">Jack</button>
+<button onclick="showPage('family')">Family</button>
+</div>
+</div>
+
+<!-- OVERVIEW -->
+<div id="overview" class="section page">
+<h2>👀 Overview</h2>
+
+<div class="grid">
+<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+<img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d">
+<img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e">
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+</div>
+
+<div class="card">
+<p><b>This is not forever.</b></p>
+<p>We keep the UK house. We try Australia. If we don’t love it—we come back.</p>
+
+<button class="button" onclick="toggle('why')">Why this matters</button>
+<div id="why" class="hidden">
+<p>This means zero pressure. It’s just an adventure we can stop anytime.</p>
+</div>
+</div>
+</div>
+
+<!-- BELLA -->
+<div id="bella" class="section page" style="display:none">
+<h2>👧 Bella’s Life</h2>
+
+<div class="grid">
+<img src="https://images.unsplash.com/photo-1521336575822-6da63fb45455">
+<img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2">
+<img src="https://images.unsplash.com/photo-1523906630133-f6934a1ab0c5">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
+</div>
+
+<div class="card">
+<p>Shopping, bubble tea, circus training, skating, culture.</p>
+
+<button class="button" onclick="toggle('bellaMore')">What your days look like</button>
+<div id="bellaMore" class="hidden">
+<p>After school = shopping, aerial silks, bubble tea, skating with friends.</p>
+</div>
+</div>
+</div>
+
+<!-- JACK -->
+<div id="jack" class="section page" style="display:none">
+<h2>🧑 Jack’s Life</h2>
+
+<div class="grid">
+<img src="https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf">
+<img src="https://images.unsplash.com/photo-1517649763962-0c623066013b">
+<img src="https://images.unsplash.com/photo-1517649763962-0c623066013b">
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+</div>
+
+<div class="card">
+<p>Skate parks, hockey, trampolining, bikes, gaming.</p>
+
+<button class="button" onclick="toggle('jackMore')">What your days look like</button>
+<div id="jackMore" class="hidden">
+<p>After school = skate parks, bikes, trampolining, gaming.</p>
+</div>
+</div>
+</div>
+
+<!-- FAMILY -->
+<div id="family" class="section page" style="display:none">
+<h2>❤️ Family Life</h2>
+
+<div class="grid">
+<img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9">
+<img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
+<img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429">
+</div>
+
+<div class="card">
+<p>Beach days, trips, BBQs, time together.</p>
+<p><b>Same family—just a better lifestyle around it.</b></p>
+</div>
+</div>
+
+</body>
+</html>
