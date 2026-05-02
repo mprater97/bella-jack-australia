@@ -2,130 +2,321 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bella & Jack’s Australia Adventure</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>🌏 Our Australia Adventure</title>
 <style>
-body {margin:0;font-family:Arial;background:#eef3f8;}
-.hero {background:#0077ff;color:white;padding:50px;text-align:center;}
-.section {padding:30px;max-width:1100px;margin:auto;}
-h2 {color:#0077ff;}
-.grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
-img {width:100%;border-radius:12px;}
-.card {background:white;padding:20px;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-.button {background:#0077ff;color:white;padding:12px 20px;border:none;border-radius:8px;cursor:pointer;margin-top:10px;}
-.hidden {display:none;}
-.split {display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-.nav {text-align:center;margin-top:20px;}
-.nav button {margin:5px;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a1a;color:#f1f5f9;overflow-x:hidden}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;background:linear-gradient(135deg,#0a0a1a 0%,#1a1a3e 50%,#0a0a1a 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='80'%3E✨%3C/text%3E%3C/svg%3E") 0 0/80px repeat;opacity:.03;animation:drift 60s linear infinite}
+@keyframes drift{from{transform:translateY(0)}to{transform:translateY(-80px)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.hero-emoji{font-size:5rem;animation:float 3s ease-in-out infinite;filter:drop-shadow(0 0 30px rgba(59,130,246,.3))}
+.hero h1{font-size:2.5rem;font-weight:800;background:linear-gradient(135deg,#60a5fa,#34d399,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:16px 0 8px;animation:fadeUp .8s ease}
+.hero p{font-size:1.2rem;color:#94a3b8;max-width:500px;animation:fadeUp 1s ease}
+.hero-sub{font-size:.9rem;color:#64748b;margin-top:20px;animation:fadeUp 1.2s ease}
+.nav{display:flex;gap:8px;margin-top:30px;flex-wrap:wrap;justify-content:center;animation:fadeUp 1.4s ease}
+.nav-btn{padding:14px 24px;border-radius:50px;border:none;font-size:1rem;font-weight:700;cursor:pointer;transition:.3s;position:relative;overflow:hidden}
+.nav-btn:hover{transform:scale(1.05)}
+.nav-bella{background:linear-gradient(135deg,#ec4899,#8b5cf6);color:#fff}
+.nav-jack{background:linear-gradient(135deg,#3b82f6,#06b6d4);color:#fff}
+.nav-family{background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff}
+.nav-nala{background:linear-gradient(135deg,#22c55e,#14b8a6);color:#fff}
+.page{display:none;min-height:100vh}
+.page.active{display:block}
+.section{max-width:1000px;margin:0 auto;padding:30px 16px}
+/* Photo grid */
+.photos{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:16px 0;border-radius:16px;overflow:hidden}
+.photos img{width:100%;height:200px;object-fit:cover;transition:.3s}
+.photos img:hover{transform:scale(1.03)}
+@media(min-width:600px){.photos{grid-template-columns:repeat(4,1fr)}.photos img{height:220px}}
+/* Cards */
+.card{background:rgba(255,255,255,.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px;margin:16px 0}
+.card h2{font-size:1.5rem;margin-bottom:8px}
+.card p{color:#cbd5e1;line-height:1.8;font-size:1rem}
+.card ul{margin:8px 0 0 20px;line-height:2.2;color:#cbd5e1}
+.card li{margin-bottom:4px}
+.highlight{background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(34,211,238,.1));border:1px solid rgba(59,130,246,.2)}
+.emoji-big{font-size:2.5rem;margin-bottom:8px;display:block}
+/* Promise box */
+.promise{background:linear-gradient(135deg,rgba(34,197,94,.1),rgba(20,184,166,.1));border:1px solid rgba(34,197,94,.2);border-radius:16px;padding:24px;margin:16px 0;text-align:center}
+.promise h3{font-size:1.3rem;color:#34d399;margin-bottom:8px}
+.promise p{color:#94a3b8;font-size:1rem;line-height:1.8}
+/* Section headers */
+.section-header{text-align:center;padding:40px 16px 20px}
+.section-header h1{font-size:2rem;font-weight:800}
+.section-header p{color:#94a3b8;font-size:1rem;margin-top:4px}
+.bella-header h1{background:linear-gradient(135deg,#ec4899,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.jack-header h1{background:linear-gradient(135deg,#3b82f6,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.family-header h1{background:linear-gradient(135deg,#f59e0b,#ef4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nala-header h1{background:linear-gradient(135deg,#22c55e,#14b8a6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+/* Back button */
+.back{position:fixed;top:16px;left:16px;background:rgba(255,255,255,.1);border:none;color:#fff;padding:10px 16px;border-radius:50px;cursor:pointer;font-size:.85rem;z-index:100;backdrop-filter:blur(10px)}
+.back:hover{background:rgba(255,255,255,.2)}
+/* Fun facts ticker */
+.ticker{overflow:hidden;background:rgba(255,255,255,.03);padding:12px 0;margin:16px 0;border-radius:12px}
+.ticker-inner{display:flex;gap:40px;animation:scroll 30s linear infinite;white-space:nowrap}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker span{font-size:.9rem;color:#94a3b8}
+/* Comparison */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.vs-card{background:rgba(255,255,255,.05);border-radius:12px;padding:16px;text-align:center}
+.vs-card h3{font-size:1rem;margin-bottom:4px}
+.vs-card .big{font-size:2rem;font-weight:800;margin:8px 0}
+.vs-uk{border:1px solid rgba(148,163,184,.2)}.vs-au{border:1px solid rgba(34,211,238,.3)}
+.vs-au .big{color:#22d3ee}
 </style>
-
-<script>
-function toggle(id){
-  document.getElementById(id).classList.toggle("hidden");
-}
-
-function showPage(page){
-  document.querySelectorAll(".page").forEach(p => p.style.display="none");
-  document.getElementById(page).style.display="block";
-}
-</script>
-
 </head>
-
 <body>
 
-<div class="hero">
-<h1>🌏 Bella & Jack’s Australia Adventure</h1>
-<p>Melbourne lifestyle + beach life 🌊</p>
-
-<div class="nav">
-<button onclick="showPage('overview')">Overview</button>
-<button onclick="showPage('bella')">Bella</button>
-<button onclick="showPage('jack')">Jack</button>
-<button onclick="showPage('family')">Family</button>
-</div>
-</div>
-
-<!-- OVERVIEW -->
-<div id="overview" class="section page">
-<h2>👀 Overview</h2>
-
-<div class="grid">
-<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
-<img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d">
-<img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e">
-<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-</div>
-
-<div class="card">
-<p><b>This is not forever.</b></p>
-<p>We keep the UK house. We try Australia. If we don’t love it—we come back.</p>
-
-<button class="button" onclick="toggle('why')">Why this matters</button>
-<div id="why" class="hidden">
-<p>This means zero pressure. It’s just an adventure we can stop anytime.</p>
-</div>
-</div>
+<!-- HERO -->
+<div class="hero" id="home">
+  <div class="hero-emoji">🌏</div>
+  <h1>Our Australia Adventure</h1>
+  <p>Same amazing family. Just with beaches, sunshine, and kangaroos. 🦘</p>
+  <p class="hero-sub">Tap your name to see what's waiting for you ⬇️</p>
+  <div class="nav">
+    <button class="nav-btn nav-bella" onclick="show('bella')">💜 Bella</button>
+    <button class="nav-btn nav-jack" onclick="show('jack')">💙 Jack</button>
+    <button class="nav-btn nav-family" onclick="show('family')">❤️ Family</button>
+    <button class="nav-btn nav-nala" onclick="show('nala')">🐕 Nala</button>
+  </div>
 </div>
 
 <!-- BELLA -->
-<div id="bella" class="section page" style="display:none">
-<h2>👧 Bella’s Life</h2>
+<div class="page" id="bella">
+<button class="back" onclick="show('home')">← Back</button>
+<div class="section-header bella-header"><h1>💜 Bella's Australia</h1><p>Your life, but upgraded ✨</p></div>
+<div class="section">
 
-<div class="grid">
-<img src="https://images.unsplash.com/photo-1521336575822-6da63fb45455">
-<img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2">
-<img src="https://images.unsplash.com/photo-1523906630133-f6934a1ab0c5">
-<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
+<div class="photos">
+  <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?w=400" alt="Shopping">
+  <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400" alt="Bubble tea">
+  <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=400" alt="Aerial silks">
+  <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400" alt="Food">
+</div>
+
+<div class="card highlight">
+  <span class="emoji-big">🎪</span>
+  <h2>Circus & Aerial</h2>
+  <p>Australia has <strong>NICA</strong> — the National Institute of Circus Arts. It's literally the best circus training centre in the entire country. Aerial silks, rings, trapeze — all there. This is where professional circus performers train. And you could train there too.</p>
 </div>
 
 <div class="card">
-<p>Shopping, bubble tea, circus training, skating, culture.</p>
+  <span class="emoji-big">🛍️</span>
+  <h2>Shopping</h2>
+  <p>Chadstone is the <strong>biggest shopping centre in the Southern Hemisphere</strong>. That's not a typo. Plus Chapel Street for indie fashion, Melbourne Central, and Highpoint. And everything's open later than Scotland.</p>
+</div>
 
-<button class="button" onclick="toggle('bellaMore')">What your days look like</button>
-<div id="bellaMore" class="hidden">
-<p>After school = shopping, aerial silks, bubble tea, skating with friends.</p>
+<div class="card">
+  <span class="emoji-big">🧋</span>
+  <h2>Bubble Tea & Asian Food</h2>
+  <p>Melbourne is the <strong>bubble tea capital of Australia</strong>. Gong Cha, CoCo, ShareTea, Tiger Sugar — they're literally everywhere. Plus the best Chinese food outside of China. Dumplings, hotpot, BBQ, yum cha — all within walking distance in Box Hill and the CBD.</p>
 </div>
+
+<div class="card">
+  <span class="emoji-big">🐨</span>
+  <h2>Cute Animals</h2>
+  <p>Koalas. Quokkas. Wombats. Baby kangaroos. You can literally <strong>cuddle a koala</strong> at wildlife sanctuaries. Healesville Sanctuary is 1 hour from Melbourne — koalas, platypus, echidnas, and more. Plus penguins at Phillip Island. Actual wild penguins.</p>
 </div>
+
+<div class="card">
+  <span class="emoji-big">⛸️</span>
+  <h2>Skating</h2>
+  <p>O'Brien Icehouse in Docklands — massive ice rink right in the city. Plus Oakleigh rink nearby. Ice skating, figure skating, and just hanging out with mates on the ice.</p>
 </div>
+
+<div class="card">
+  <span class="emoji-big">🎵</span>
+  <h2>Music & Culture</h2>
+  <p>Melbourne is Australia's <strong>live music capital</strong>. More live music venues per person than anywhere else in the world. Street art laneways, festivals, night markets, and a vibe that's completely different from anything in Scotland.</p>
+</div>
+
+<div class="vs">
+  <div class="vs-card vs-uk"><h3>Scotland</h3><div class="big">🌧️</div><p>185 rainy days/yr</p></div>
+  <div class="vs-card vs-au"><h3>Australia</h3><div class="big">☀️</div><p>230+ sunny days/yr</p></div>
+</div>
+
+<div class="promise">
+  <h3>💜 Bella's Promise</h3>
+  <p>You'll still FaceTime your friends every day. You'll still have your music, your style, your vibe. But now you'll also have beaches, sunshine, bubble tea on every corner, and the best circus training in Australia. This isn't losing anything — it's adding everything.</p>
+</div>
+
+</div></div>
 
 <!-- JACK -->
-<div id="jack" class="section page" style="display:none">
-<h2>🧑 Jack’s Life</h2>
+<div class="page" id="jack">
+<button class="back" onclick="show('home')">← Back</button>
+<div class="section-header jack-header"><h1>💙 Jack's Australia</h1><p>Level up your life 🎮</p></div>
+<div class="section">
 
-<div class="grid">
-<img src="https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf">
-<img src="https://images.unsplash.com/photo-1517649763962-0c623066013b">
-<img src="https://images.unsplash.com/photo-1517649763962-0c623066013b">
-<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+<div class="photos">
+  <img src="https://images.unsplash.com/photo-1564429238961-bf8f8be8c8cd?w=400" alt="Skatepark">
+  <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=400" alt="VR Gaming">
+  <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400" alt="BMX">
+  <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400" alt="Beach">
+</div>
+
+<div class="card highlight">
+  <span class="emoji-big">🛹</span>
+  <h2>Skateparks</h2>
+  <p>Australia has some of the <strong>best skateparks in the world</strong>. And they're free. Frankston skatepark is massive — bowls, rails, ramps. Plus Waterways, Riverslide (right in the city), and dozens more. The weather means you can skate <strong>all year round</strong>. No more frozen fingers.</p>
 </div>
 
 <div class="card">
-<p>Skate parks, hockey, trampolining, bikes, gaming.</p>
+  <span class="emoji-big">🎮</span>
+  <h2>Gaming & VR</h2>
+  <p>Melbourne has <strong>Zero Latency</strong> — one of the world's first free-roam VR gaming centres. Walk around, shoot zombies, explore space — with your mates. Plus gaming cafes, esports venues, and PAX Australia (the biggest gaming convention in the Southern Hemisphere) happens in Melbourne every year.</p>
+</div>
 
-<button class="button" onclick="toggle('jackMore')">What your days look like</button>
-<div id="jackMore" class="hidden">
-<p>After school = skate parks, bikes, trampolining, gaming.</p>
+<div class="card">
+  <span class="emoji-big">⛸️</span>
+  <h2>Ice Hockey</h2>
+  <p>O'Brien Icehouse has a full <strong>ice hockey program</strong> for juniors. Learn to play, join a team, compete. Plus the Melbourne Ice and Melbourne Mustangs play there — you can watch pro games. Oakleigh rink is even closer for regular skating and hockey training.</p>
 </div>
+
+<div class="card">
+  <span class="emoji-big">🤸</span>
+  <h2>Trampolining & Circus</h2>
+  <p>Bounce Inc — massive indoor trampoline parks with foam pits, dodgeball courts, and freestyle areas. Plus NICA (National Institute of Circus Arts) for proper circus skills — trapeze, tumbling, acrobatics. Way beyond anything in Scotland.</p>
 </div>
+
+<div class="card">
+  <span class="emoji-big">🚲</span>
+  <h2>Biking</h2>
+  <p>Trails everywhere. Lysterfield Mountain Bike Park, You Yangs, and hundreds of km of bike paths along the coast and through parks. Plus the weather means you can ride <strong>every single day</strong> if you want.</p>
 </div>
+
+<div class="card">
+  <span class="emoji-big">⚡</span>
+  <h2>Pokémon</h2>
+  <p>Melbourne has a <strong>huge Pokémon GO community</strong> — regular community days in parks, raids everywhere, and way more Pokéstops than Scotland. Plus there are Pokémon card shops and trading communities. And the Royal Botanic Gardens is basically a Pokémon safari zone.</p>
+</div>
+
+<div class="vs">
+  <div class="vs-card vs-uk"><h3>Scotland Skateparks</h3><div class="big">🥶</div><p>Too cold half the year</p></div>
+  <div class="vs-card vs-au"><h3>Australia Skateparks</h3><div class="big">🔥</div><p>Skate every day, all year</p></div>
+</div>
+
+<div class="promise">
+  <h3>💙 Jack's Promise</h3>
+  <p>Your Xbox comes with you. Your Minecraft worlds come with you. Your bikes come with you. But now you'll also have skateparks you can use all year, VR gaming centres, ice hockey teams to join, and beaches after school. Same Jack — just with way more to do.</p>
+</div>
+
+</div></div>
 
 <!-- FAMILY -->
-<div id="family" class="section page" style="display:none">
-<h2>❤️ Family Life</h2>
+<div class="page" id="family">
+<button class="back" onclick="show('home')">← Back</button>
+<div class="section-header family-header"><h1>❤️ Family Life</h1><p>Same us. Better everything around us.</p></div>
+<div class="section">
 
-<div class="grid">
-<img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9">
-<img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
-<img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429">
+<div class="photos">
+  <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400" alt="Beach">
+  <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400" alt="Family">
+  <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400" alt="BBQ">
+  <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400" alt="Nature">
+</div>
+
+<div class="card highlight">
+  <span class="emoji-big">🏖️</span>
+  <h2>Beach Days</h2>
+  <p>Imagine finishing school on a Friday and going straight to the beach. Not a grey, windy beach — a proper sandy beach with warm water and sunshine. That's a normal Friday in Australia.</p>
 </div>
 
 <div class="card">
-<p>Beach days, trips, BBQs, time together.</p>
-<p><b>Same family—just a better lifestyle around it.</b></p>
-</div>
+  <span class="emoji-big">🌡️</span>
+  <h2>The Weather</h2>
+  <p>No more dark at 3pm in winter. No more 6 layers to go outside. Australia has <strong>actual sunshine</strong>. Melbourne gets more sunny days in winter than Scotland gets all year. You'll wonder how you ever lived without it.</p>
 </div>
 
+<div class="card">
+  <span class="emoji-big">🦘</span>
+  <h2>Wildlife</h2>
+  <p>Kangaroos in the wild. Koalas in trees. Penguins on the beach. Dolphins in the bay. Colourful parrots in your garden. Every day feels a bit like being in a nature documentary.</p>
+</div>
+
+<div class="card">
+  <span class="emoji-big">🏡</span>
+  <h2>Our House</h2>
+  <p>Bigger houses. Gardens. Space. Maybe even a pool. Australian homes are built for living — BBQ areas, outdoor space, room to breathe. Not cramped terraces and tiny gardens.</p>
+</div>
+
+<div class="card">
+  <span class="emoji-big">🎄</span>
+  <h2>Christmas on the Beach</h2>
+  <p>Yes, really. Christmas Day in Australia is in summer. BBQ on the beach, swimming, sunshine. It's weird at first — then you'll never want a cold Christmas again.</p>
+</div>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>🦘 60+ million kangaroos in Australia</span>
+    <span>☀️ Melbourne gets 2,200 hours of sunshine per year</span>
+    <span>🏖️ Australia has 10,685 beaches</span>
+    <span>🌏 Melbourne voted most liveable city 7 times</span>
+    <span>🐧 Penguins parade at Phillip Island every sunset</span>
+    <span>🎪 NICA is the national circus training centre</span>
+    <span>🛹 Australia has 1,800+ skateparks</span>
+    <span>🧋 Melbourne has 500+ bubble tea shops</span>
+    <span>🦘 60+ million kangaroos in Australia</span>
+    <span>☀️ Melbourne gets 2,200 hours of sunshine per year</span>
+    <span>🏖️ Australia has 10,685 beaches</span>
+    <span>🌏 Melbourne voted most liveable city 7 times</span>
+    <span>🐧 Penguins parade at Phillip Island every sunset</span>
+    <span>🎪 NICA is the national circus training centre</span>
+    <span>🛹 Australia has 1,800+ skateparks</span>
+    <span>🧋 Melbourne has 500+ bubble tea shops</span>
+  </div>
+</div>
+
+<div class="promise">
+  <h3>🏠 The Big Promise</h3>
+  <p><strong>We keep our house in Scotland.</strong> It's always there. If we try Australia and it's not for us — we come home. No pressure. No forever. Just an incredible adventure that most families never get the chance to have.</p>
+  <p style="margin-top:12px"><strong>You'll still talk to your friends every day.</strong> FaceTime, WhatsApp, Discord, gaming together online — your friendships don't end. They just get a really cool story added to them.</p>
+  <p style="margin-top:12px;color:#34d399;font-weight:700">This is the biggest adventure our family will ever go on. Together. 🌏</p>
+</div>
+
+</div></div>
+
+<!-- NALA -->
+<div class="page" id="nala">
+<button class="back" onclick="show('home')">← Back</button>
+<div class="section-header nala-header"><h1>🐕 Nala's Coming Too</h1><p>She's not being left behind</p></div>
+<div class="section">
+
+<div class="card highlight">
+  <span class="emoji-big">🐕</span>
+  <h2>Nala's Plan</h2>
+  <p>Nala will stay with family in Scotland for the first few months while we get settled. Then she flies out to join us. She'll have her own flight, her own crate, and professionals looking after her the whole way.</p>
+</div>
+
+<div class="card">
+  <span class="emoji-big">🏖️</span>
+  <h2>Dog Beaches</h2>
+  <p>Australia has <strong>off-lead dog beaches</strong> everywhere. Imagine Nala running free on a sandy beach in the sunshine. Frankston has a dedicated dog beach. She's going to love it even more than we do.</p>
+</div>
+
+<div class="card">
+  <span class="emoji-big">🌳</span>
+  <h2>Parks & Walks</h2>
+  <p>Huge parks, coastal walking trails, and bushland tracks — all dog-friendly. No more muddy, freezing walks in the rain. Nala gets sunshine walks every single day.</p>
+</div>
+
+<div class="promise">
+  <h3>🐕 Nala's Promise</h3>
+  <p>She's family. She comes with us. It just takes a little longer because Australia has strict rules to keep all animals safe. But she <strong>will</strong> be there — running on the beach with us.</p>
+</div>
+
+</div></div>
+
+<script>
+function show(id){
+  document.querySelectorAll('.page,.hero').forEach(function(p){p.style.display='none';p.classList.remove('active')});
+  if(id==='home'){document.getElementById('home').style.display='flex'}
+  else{document.getElementById(id).style.display='block';document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+}
+</script>
 </body>
 </html>
